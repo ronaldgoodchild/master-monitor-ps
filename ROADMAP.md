@@ -3,7 +3,7 @@
 Comment on (or open) an issue first so we don't duplicate work.
 
 ## Good first issues
-- [ ] Add screenshots to the README
+- [x] Add screenshots to the README
 - [ ] Add a `-ConfigPath` parameter so several server lists can be monitored
 - [ ] Reduce duplicated code between the Simple and PRO editions (shared module)
 - [ ] Add Pester tests for config loading and the alert-suppression logic

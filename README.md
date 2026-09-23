@@ -4,6 +4,11 @@ A free **server monitoring dashboard in a single PowerShell script**: card-based
 
 > Part of the REGTeches NOC family. Want a web version or SMS alerts? See [noc-dashboard](https://github.com/ronaldgoodchild/noc-dashboard).
 
+## Screenshots
+
+![Simple edition: one card per server, alarm banner on top](docs/screenshots/main.png)
+*Simple edition: one card per server, alarm banner on top*
+
 ## Two editions
 
 | Script | Version | What it is |
