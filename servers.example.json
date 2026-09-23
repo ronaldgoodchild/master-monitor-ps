@@ -1,0 +1,40 @@
+{
+  "Servers": [
+    {
+      "Name": "Production Web Server",
+      "Address": "192.168.1.100",
+      "Port": 443,
+      "Maintenance": false
+    },
+    {
+      "Name": "Database Server",
+      "Address": "db.company.com",
+      "Port": 3306,
+      "Maintenance": false
+    },
+    {
+      "Name": "Email Server",
+      "Address": "mail.company.com",
+      "Port": 25,
+      "Maintenance": false
+    },
+    {
+      "Name": "External Website",
+      "Address": "https://www.company.com",
+      "Port": null,
+      "Maintenance": false
+    }
+  ],
+  "Settings": {
+    "CheckIntervalSeconds": 30,
+    "EmailSender": "",
+    "EmailPassword": "",
+    "EmailReceiver": "",
+    "TelegramBotToken": "",
+    "TelegramChatId": "",
+    "PushoverUserKey": "",
+    "PushoverAPIToken": "",
+    "WebhookUrl": "",
+    "WebDashboardPort": 8080
+  }
+}

@@ -1,0 +1,11 @@
+# Runtime data - never commit (server list, email/Telegram/Pushover secrets, database, logs)
+servers.json
+*.db
+*.log
+monitor_report_*.html
+uptime_log.csv
+
+# Third-party / user-supplied files (see README)
+System.Data.SQLite.dll
+*.wav
+*.exe
