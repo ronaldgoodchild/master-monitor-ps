@@ -3,6 +3,7 @@
 Reconstructed from the original development history (February 2026).
 
 ## [Unreleased]
+- Fix: HTTP(S) URL checks used `Invoke-WebRequest` without `-UseBasicParsing`, which makes Windows PowerShell 5.1 stop at a "Security Warning: Script Execution Risk" Y/N prompt and freeze the dashboard; URL monitors also always reported OFFLINE
 - Fix: MasterMonitorPRO.ps1 failed to parse (JavaScript ` ${...}` in the web-dashboard HTML was being expanded by PowerShell); the HTML is now a literal here-string
 - Docs, examples, security policy and CI added
 

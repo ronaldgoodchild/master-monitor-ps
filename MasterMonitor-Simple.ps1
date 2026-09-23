@@ -130,7 +130,7 @@ function Test-ServerAdvanced {
             if ($Address -like "http*" -or ($Port -eq 80 -or $Port -eq 443)) {
                 try {
                     $url = if ($Address -like "http*") { $Address } else { "http://${Address}" }
-                    $httpResponse = Invoke-WebRequest -Uri $url -Method Head -TimeoutSec 5 -ErrorAction Stop
+                    $httpResponse = Invoke-WebRequest -Uri $url -Method Head -TimeoutSec 5 -UseBasicParsing -ErrorAction Stop
                     $result.HttpStatus = $httpResponse.StatusCode
                     $result.IsOnline = ($httpResponse.StatusCode -ge 200 -and $httpResponse.StatusCode -lt 400)
                 } catch {
