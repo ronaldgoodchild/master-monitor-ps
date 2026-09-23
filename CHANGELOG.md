@@ -3,6 +3,7 @@
 Reconstructed from the original development history (February 2026).
 
 ## [Unreleased]
+- Fix: URL monitors (`https://...`) were pinged with the full URL as the host name, which always failed before the HTTP check ran; the host is now extracted, and a host that blocks ICMP is no longer reported down if its port/URL check succeeds
 - Fix: HTTP(S) URL checks used `Invoke-WebRequest` without `-UseBasicParsing`, which makes Windows PowerShell 5.1 stop at a "Security Warning: Script Execution Risk" Y/N prompt and freeze the dashboard; URL monitors also always reported OFFLINE
 - Fix: MasterMonitorPRO.ps1 failed to parse (JavaScript ` ${...}` in the web-dashboard HTML was being expanded by PowerShell); the HTML is now a literal here-string
 - Docs, examples, security policy and CI added

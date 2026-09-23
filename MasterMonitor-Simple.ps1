@@ -1,4 +1,4 @@
-#Requires -Version 5.1
+﻿#Requires -Version 5.1
 <#
 .SYNOPSIS
     REGTeches NOC Dashboard - Simplified Edition
@@ -96,12 +96,14 @@ function Test-ServerAdvanced {
         Error = ""
     }
     
-    # Ping test with response time
+    # Ping test (a URL is reduced to its host name). ICMP being blocked is not fatal when a
+    # port or HTTP check can still decide whether the service is up.
+    $pingHost = if ($Address -like "http*") { try { ([Uri]$Address).Host } catch { $Address } } else { $Address }
+    $pingResult = $null
+    try { $pingResult = Test-Connection $pingHost -Count 1 -ErrorAction Stop } catch { $result.Error = "Ping failed: $_" }
     try {
-        $pingResult = Test-Connection $Address -Count 1 -ErrorAction Stop
-        
-        if ($pingResult) {
-            $result.ResponseTime = $pingResult.ResponseTime
+        if ($pingResult -or $Port -or $Address -like "http*") {
+            if ($pingResult) { $result.ResponseTime = $pingResult.ResponseTime }
             
             # Port test if specified
             if ($Port) {
@@ -122,7 +124,7 @@ function Test-ServerAdvanced {
                 } finally {
                     $tcp.Close()
                 }
-            } else {
+            } elseif ($pingResult) {
                 $result.IsOnline = $true
             }
             

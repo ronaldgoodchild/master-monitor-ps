@@ -760,11 +760,13 @@ function Test-ServerAdvanced {
         Error = ""
     }
     
-    # Ping test with response time
-    $pingResult = Test-Connection $Address -Count 1 -ErrorAction SilentlyContinue
-    
-    if ($pingResult) {
-        $result.ResponseTime = $pingResult.ResponseTime
+    # Ping test (a URL is reduced to its host name). ICMP being blocked is not fatal when a
+    # port or HTTP check can still decide whether the service is up.
+    $pingHost = if ($Address -like "http*") { try { ([Uri]$Address).Host } catch { $Address } } else { $Address }
+    $pingResult = Test-Connection $pingHost -Count 1 -ErrorAction SilentlyContinue
+
+    if ($pingResult -or $Port -or $Address -like "http*") {
+        if ($pingResult) { $result.ResponseTime = $pingResult.ResponseTime }
         
         # Port test if specified
         if ($Port) {
@@ -785,7 +787,7 @@ function Test-ServerAdvanced {
             } finally {
                 $tcp.Close()
             }
-        } else {
+        } elseif ($pingResult) {
             $result.IsOnline = $true
         }
         
